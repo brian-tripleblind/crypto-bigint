@@ -72,7 +72,7 @@ impl Ord for Limb {
         let mut ret = Ordering::Less;
         ret.conditional_assign(&Ordering::Equal, self.ct_eq(other));
         ret.conditional_assign(&Ordering::Greater, self.ct_gt(other));
-        debug_assert_eq!(ret == Ordering::Less, self.ct_lt(other).into());
+        debug_assert_eq!(ret == Ordering::Less, <Choice as Into<bool>>::into(self.ct_lt(other).into()));
         ret
     }
 }
